@@ -166,11 +166,11 @@
                                             <!-- remove btn-group for more spacing in the dropdown -->
                                             <div class="dropdown dropleft btn-group">
                                                 <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton">
-                                                    <Link href="/students-exam-scores" class="dropdown-item" :data="{grade:clas.class_name,section:clas.section}">Student's score [ {{arm.arm_name}}]</Link>
-                                                    <Link href="/affective-disposition" class="dropdown-item" :data="{grade:clas.class_name,currentStudent:0,section:clas.section}">Affective disposition [ {{arm.arm_name}}]</Link>
-                                                    <Link href="/attendance" class="dropdown-item" :data="{grade:clas.class_name, section: clas.section}">Attendance [ {{arm.arm_name}}]</Link>
-                                                    <Link href="/physical-development" :data="{grade:clas.class_name}" class="dropdown-item">Physical development [ {{arm.arm_name}}]</Link>
-                                                    <Link href="/remarks" class="dropdown-item" :data="{grade: clas.class_name}">Remarks [ {{arm.arm_name}}]</Link>
+                                                    <Link href="/students-exam-scores" class="dropdown-item" :data="{grade:clas.class_name,section:clas.section, arm:arm.arm_name}">Student's score [ {{arm.arm_name}}]</Link>
+                                                    <Link href="/affective-disposition" class="dropdown-item" :data="{grade:clas.class_name,currentStudent:0,section:clas.section, arm:arm.arm_name}">Affective disposition [ {{arm.arm_name}}]</Link>
+                                                    <Link href="/attendance" class="dropdown-item" :data="{grade:clas.class_name, section: clas.section, arm:arm.arm_name}">Attendance [ {{arm.arm_name}}]</Link>
+                                                    <Link href="/physical-development" :data="{grade:clas.class_name, arm:arm.arm_name}" class="dropdown-item">Physical development [ {{arm.arm_name}}]</Link>
+                                                    <Link href="/remarks" class="dropdown-item" :data="{grade: clas.class_name, arm:arm.arm_name}">Remarks [ {{arm.arm_name}}]</Link>
                                                     <div class="dropdown-divider"></div>
                                                     <Link href="/edit-class" :data="{id:clas.id}" class="mr-2 dropdown-item">edit</Link>
                                                     <a @click="deleteClass(clas.class_name, clas.id)" href="#" class="dropdown-item">delete</a>

@@ -96,8 +96,13 @@ class StudentController extends Controller
                 return redirect('/classes');
             }
 
-            $students = Student::with('subjects')->where('grade',$request->grade)->paginate(20)->withQueryString();
+            if($request->arm){
+                $students = Student::with('subjects')->where('grade',$request->grade)->where('arm',$request->arm)->paginate(20)->withQueryString();
                 $page= 0;
+            }else{
+              $students = Student::with('subjects')->where('grade',$request->grade)->paginate(20)->withQueryString();
+                $page= 0;  
+            }
             
                 //if a student is selected, give me the subject, else give me the first subject
             if(!$request->newpage){
@@ -373,8 +378,12 @@ class StudentController extends Controller
        * Gets the page for the affective disposition
        */
       public function affectiveDisposition(Request $request){
-         
-        $students = Student::with('primaryAffective')->where('grade',$request->grade)->paginate(20)->withQueryString();
+         if($request->arm){
+            $students = Student::with('primaryAffective')->where('grade',$request->grade)->where('arm',$request->arm)->paginate(20)->withQueryString();
+         }else{
+             $students = Student::with('primaryAffective')->where('grade',$request->grade)->paginate(20)->withQueryString();
+         }
+       
         //paginator increment
         $page= 0;
         if(request()->page > 1){
@@ -422,7 +431,12 @@ class StudentController extends Controller
        * Get the attendance page
        */
       public function getAttendance(Request $request){
-          $students = Student::with('attendance')->where('grade',$request->grade)->get();
+        if($request->arm){
+            $students = Student::with('attendance')->where('grade',$request->grade)->where('arm',$request->arm)->get();
+        }else{
+           $students = Student::with('attendance')->where('grade',$request->grade)->get(); 
+        }
+          
           $grade = $request->grade;
         return inertia('Students/attendance',compact('students','grade'));
       }
@@ -460,7 +474,12 @@ class StudentController extends Controller
        * Gets physical development
        */
       public function getPhysicalDevelopment(Request $request){
-          $students = Student::with('physicaldevelopment')->where('grade',$request->grade)->get();
+        if($request->arm){
+            $students = Student::with('physicaldevelopment')->where('grade',$request->grade)->where('arm',$request->arm)->get();
+        }else{
+            $students = Student::with('physicaldevelopment')->where('grade',$request->grade)->get();
+        }
+          
           return inertia('Students/physicaldevelopment', compact('students'));
       }
       /**
@@ -495,9 +514,16 @@ class StudentController extends Controller
        * Student's remarks
        */
       public function getStudentsRemarks(Request $request){
-        $students = Student::with(['remarks'=>function($query) use ($request) {
-            $query->where('term','first term')->where('session','2022/2023');
-        }])->where('grade',$request->grade)->get();
+        if($request->arm){
+            $students = Student::with(['remarks'=>function($query) use ($request) {
+                $query->where('term','first term')->where('session','2022/2023');
+            }])->where('grade',$request->grade)->where('arm',$request->arm)->get();
+        }else{
+            $students = Student::with(['remarks'=>function($query) use ($request) {
+                $query->where('term','first term')->where('session','2022/2023');
+            }])->where('grade',$request->grade)->get();
+        }
+        
         $grade = $request->grade;
         return inertia('Students/remarks',compact('students','grade'));
       }
