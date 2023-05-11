@@ -119,6 +119,7 @@ class StudentController extends Controller
             }
 
             $subjects = isset($student->subjects)? $student->subjects : [];
+           
             $grade = $request->grade;
             //if no student is selected return back
             if(!$request->studentid){

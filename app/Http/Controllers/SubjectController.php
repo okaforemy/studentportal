@@ -93,7 +93,7 @@ class SubjectController extends Controller
         }else{
             //ensures that both selected_subj and subjects values exist and remove the ones that do not exist
             foreach($selected_subj as $key => $subj){
-                dd($selected_subj);
+              
                 $found = $subjects->where('subject',$subj->subject)->where('section',$request->section)->count();
                 if($found == 0){
                     unset($selected_subj[$key]);

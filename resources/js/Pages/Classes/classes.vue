@@ -150,6 +150,9 @@
                                         <Link href="/physical-development" :data="{grade:clas.class_name}" class="dropdown-item">Physical development</Link>
                                         <Link href="/remarks" class="dropdown-item" :data="{grade: clas.class_name}">Remarks</Link>
                                         <div class="dropdown-divider"></div>
+                                        <Link href="#" class="dropdown-item">Results</Link>
+                                        <Link href="/mid-term-result" :data="{grade: clas.class_name}" class="dropdown-item">Mid-term Results</Link>
+                                        <div class="dropdown-divider"></div>
                                         <Link href="/edit-class" :data="{id:clas.id}" class="mr-2 dropdown-item">edit</Link>
                                         <a @click="deleteClass(clas.class_name, clas.id)" href="#" class="dropdown-item">delete</a>
                                     </div>
@@ -171,6 +174,9 @@
                                                     <Link href="/attendance" class="dropdown-item" :data="{grade:clas.class_name, section: clas.section, arm:arm.arm_name}">Attendance [ {{arm.arm_name}}]</Link>
                                                     <Link href="/physical-development" :data="{grade:clas.class_name, arm:arm.arm_name}" class="dropdown-item">Physical development [ {{arm.arm_name}}]</Link>
                                                     <Link href="/remarks" class="dropdown-item" :data="{grade: clas.class_name, arm:arm.arm_name}">Remarks [ {{arm.arm_name}}]</Link>
+                                                    <div class="dropdown-divider"></div>
+                                                    <Link href="#" class="dropdown-item">Results</Link>
+                                                    <Link href="/mid-term-result" :data="{grade: clas.class_name, arm:arm.arm_name}" class="dropdown-item">Mid-term Results</Link>
                                                     <div class="dropdown-divider"></div>
                                                     <Link href="/edit-class" :data="{id:clas.id}" class="mr-2 dropdown-item">edit</Link>
                                                     <a @click="deleteClass(clas.class_name, clas.id)" href="#" class="dropdown-item">delete</a>

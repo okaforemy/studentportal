@@ -6,6 +6,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ParentsController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\ResultController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,3 +70,9 @@ Route::post('/add-subjects',[SubjectController::class, 'AddSubject']);
 Route::get('/assign-subjects',[SubjectController::class, 'getAssignSubject'])->name('assignsubjects');
 Route::post('/assign-subjects',[SubjectController::class, 'assignSubjects']);
 Route::get('/delete-subject', [SubjectController::class, 'deleteSubject']);
+
+//manages students result
+Route::get('/mid-term-result', [ResultController::class, 'index']);
+
+//holiday assessment
+Route::get('/holiday-assement', [ResultController::class, 'holidayAssessment']);
