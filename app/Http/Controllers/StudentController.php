@@ -539,4 +539,5 @@ class StudentController extends Controller
         ],$request->all());
         return response()->json(['success'=>true]);
       }
+
 }

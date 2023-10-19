@@ -9,6 +9,8 @@ class Subjects extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['subject','holiday','subject_teacher','category','section'];
+
     /**
      * Get all of the Student for the Subjects
      *

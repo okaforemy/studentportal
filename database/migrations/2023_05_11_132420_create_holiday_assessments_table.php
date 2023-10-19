@@ -17,6 +17,9 @@ class CreateHolidayAssessmentsTable extends Migration
             $table->id();
             $table->string('subject');
             $table->integer('score');
+            $table->integer('student_id');
+            $table->string('term');
+            $table->string('session');
             $table->timestamps();
         });
     }

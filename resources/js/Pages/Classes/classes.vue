@@ -145,13 +145,14 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <Link href="/students-exam-scores" class="dropdown-item" :data="{grade:clas.class_name,section:clas.section}">Student's score</Link>
+                                        <Link href="/holiday-assessment" v-if="clas.section=='primary'"  class="dropdown-item" :data="{grade: clas.class_name}">Holiday Assessment</Link>
                                         <Link href="/affective-disposition" class="dropdown-item" :data="{grade:clas.class_name,currentStudent:0,section:clas.section}">Affective disposition</Link>
                                         <Link href="/attendance" class="dropdown-item" :data="{grade:clas.class_name, section: clas.section}">Attendance</Link>
                                         <Link href="/physical-development" :data="{grade:clas.class_name}" class="dropdown-item">Physical development</Link>
                                         <Link href="/remarks" class="dropdown-item" :data="{grade: clas.class_name}">Remarks</Link>
                                         <div class="dropdown-divider"></div>
                                         <Link href="#" class="dropdown-item">Results</Link>
-                                        <Link href="/mid-term-result" :data="{grade: clas.class_name}" class="dropdown-item">Mid-term Results</Link>
+                                        <Link href="/mid-term-result" :data="{grade: clas.class_name, section:clas.section}" class="dropdown-item">Mid-term Results</Link>
                                         <div class="dropdown-divider"></div>
                                         <Link href="/edit-class" :data="{id:clas.id}" class="mr-2 dropdown-item">edit</Link>
                                         <a @click="deleteClass(clas.class_name, clas.id)" href="#" class="dropdown-item">delete</a>
@@ -170,13 +171,14 @@
                                             <div class="dropdown dropleft btn-group">
                                                 <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton">
                                                     <Link href="/students-exam-scores" class="dropdown-item" :data="{grade:clas.class_name,section:clas.section, arm:arm.arm_name}">Student's score [ {{arm.arm_name}}]</Link>
+                                                    <Link href="/holiday-assessment" v-if="clas.section=='primary'"  class="dropdown-item" :data="{grade: clas.class_name, arm:arm.arm_name}">Holiday Assessment [ {{arm.arm_name}}]</Link>
                                                     <Link href="/affective-disposition" class="dropdown-item" :data="{grade:clas.class_name,currentStudent:0,section:clas.section, arm:arm.arm_name}">Affective disposition [ {{arm.arm_name}}]</Link>
                                                     <Link href="/attendance" class="dropdown-item" :data="{grade:clas.class_name, section: clas.section, arm:arm.arm_name}">Attendance [ {{arm.arm_name}}]</Link>
                                                     <Link href="/physical-development" :data="{grade:clas.class_name, arm:arm.arm_name}" class="dropdown-item">Physical development [ {{arm.arm_name}}]</Link>
                                                     <Link href="/remarks" class="dropdown-item" :data="{grade: clas.class_name, arm:arm.arm_name}">Remarks [ {{arm.arm_name}}]</Link>
                                                     <div class="dropdown-divider"></div>
                                                     <Link href="#" class="dropdown-item">Results</Link>
-                                                    <Link href="/mid-term-result" :data="{grade: clas.class_name, arm:arm.arm_name}" class="dropdown-item">Mid-term Results</Link>
+                                                    <Link href="/mid-term-result" :data="{grade: clas.class_name, arm:arm.arm_name, section:clas.section}" class="dropdown-item">Mid-term Results</Link>
                                                     <div class="dropdown-divider"></div>
                                                     <Link href="/edit-class" :data="{id:clas.id}" class="mr-2 dropdown-item">edit</Link>
                                                     <a @click="deleteClass(clas.class_name, clas.id)" href="#" class="dropdown-item">delete</a>

@@ -17,8 +17,12 @@
                <ul class="list-group">
                 <a href="#" class="list-group-item  d-flex justify-content-between align-items-center" v-for="(subj, index) in allsubjects" :key="index"> 
                   {{subj.subject}}
+                  <div v-if="section=='primary'">
+                    <label for="">Holiday Assessment</label>
+                    <input type="checkbox" name="holidayassessment" :ref="'holiday_'+index" :checked="isChecked(subj.subject, subj.holiday)" @click="selectSubject(subj, $event, true,index)">
+                  </div>
                   <div class="custom-control custom-switch">
-                    <input type="checkbox" class="custom-control-input" @click="selectSubject(subj, $event)" :checked="isSelected(subj.subject)" :id="'customSwitch'+index">
+                    <input type="checkbox" class="custom-control-input" @click="selectSubject(subj, $event, false,index)" :checked="isSelected(subj.subject, index)" :id="'customSwitch'+index">
                     <label class="custom-control-label" :for="'customSwitch'+index"></label>
                   </div>
                   <span class="badge badge-primary badge-pill"></span>
@@ -54,35 +58,54 @@ export default {
             allsubjects: this.subjects,
             selectedsubjects: [],
            // grade:"",
+            section:"",
             sectionStudentsTitle:"",
         }
     },
     methods: {
     isSelected(subject){
       let subjects = Object.values(this.selected_subj);
-      let size = subjects.length
-      if(size > 0){
-       for(var i =0; i < size; i++){
-         if(subjects[i].subject === subject){
-           return true;
-         }
-       }
+      let index = this.selected_subj.findIndex(val => val.subject === subject)
+      if(index >= 0){
+        return true;
       }else{
         return false
       }
     },
 
-    selectSubject(subj,event){
+    isChecked(subject,holiday){
+      let subjects = Object.values(this.selected_subj);
+      let index = this.selected_subj.findIndex(val => val.subject === subject && val.holiday == true)
+      if(index >= 0){
+        return true;
+      }else{
+        return false
+      }
+    },
+
+    selectSubject(subj,event,holiday,ind){
       let index = this.selectedsubjects.findIndex(element => element.id == subj.id)
-      if(event.target.checked){
-        if(index == -1){
-          this.selectedsubjects.push(subj);
+      if(holiday===true){
+        if(index >=0){
+          
+         if(this.$refs['holiday_'+ind][0].checked){
+            this.selectedsubjects[index].holiday = true;
+          }else{
+            delete this.selectedsubjects[index].holiday
+          }
         }
       }else{
-       if(index != -1){
-        this.selectedsubjects.splice(index,1);
-       }
+        if(event.target.checked){
+          if(index == -1){
+            this.selectedsubjects.push(subj);
+          }
+        }else{
+        if(index != -1){
+          this.selectedsubjects.splice(index,1);
+        }
+        }
       }
+      
     }
   },
   created(){
@@ -90,6 +113,7 @@ export default {
     let grade = params.get('grade');
     let section = params.get('section');
     this.grade = grade;
+    this.section = section;
     if(section =="pre_nursery" || section =="nursery" || section =="primary"){
       this.sectionStudentsTitle = "Pupils"
     }else{

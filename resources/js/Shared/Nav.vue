@@ -125,6 +125,58 @@
                   </p>
                 </Link>
               </li>
+              <li class="nav-item">
+
+            <a href="#" class="nav-link">
+              <i class="fas fa-user-tie"></i>
+              <p>
+                CBT
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <Link href="/add-question" class="nav-link">
+                  <i class="fas fa-user-plus"></i>
+                  <p>
+                    Add questions
+                  </p>
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link href="/add-cbt-student" class="nav-link">
+                  <i class="fas fa-user-plus"></i>
+                  <p>
+                    Add students
+                  </p>
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link href="/cbt-students" class="nav-link">
+                  <i class="fas fa-user-plus"></i>
+                  <p>
+                    Students
+                  </p>
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link href="/view-questions" class="nav-link">
+                  <i class="fas fa-user-plus"></i>
+                  <p>
+                    Questions
+                  </p>
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link href="/cbt-settings" class="nav-link">
+                  <i class="fas fa-user-plus"></i>
+                  <p>
+                    Settings
+                  </p>
+                </Link>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

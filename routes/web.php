@@ -7,6 +7,7 @@ use App\Http\Controllers\ParentsController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\ResultController;
+use App\Http\Controllers\CBTController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,32 @@ Route::get('/delete-subject', [SubjectController::class, 'deleteSubject']);
 
 //manages students result
 Route::get('/mid-term-result', [ResultController::class, 'index']);
+Route::get('/get-midterm-result', [ResultController::class, 'getMidTermResult']);
 
 //holiday assessment
-Route::get('/holiday-assement', [ResultController::class, 'holidayAssessment']);
+Route::get('/holiday-assessment', [ResultController::class, 'holidayAssessment']);
+Route::post('/holiday-assessment', [ResultController::class, 'saveHolidayAssessment']);
+
+//CBT
+Route::get('/add-question', [CBTController::class, 'addQuestion'])->name('add-question');
+Route::post('/add-question', [CBTController::class, 'saveQuestions']);
+Route::get('/add-cbt-student', [CBTController::class, 'addStudent']);
+Route::post('/add-cbt-student', [CBTController::class, 'saveStudent'])->name('save-cbt-students');
+Route::get('/delete-cbt-student', [CBTController::class, 'deleteCBTStudent']);
+Route::get('/cbt-students', [CBTController::class, 'CBTUsers']);
+Route::get('/view-questions', [CBTController::class, 'viewQuestions'])->name('view-cbt-questions');
+Route::get('/get-questions', [CBTController::class, 'getQuestions']);
+Route::get('/delete-question', [CBTController::class, 'deleteQuestion']);
+Route::get('/cbt-settings', [CBTController::class, 'settings']);
+Route::post('/cbt-settings', [CBTController::class, 'saveSettings']);
+Route::get('/start-exam-setting', [CBTController::class,'startExam']);
+Route::get('/cbt-login', [CBTController::class, 'CBTLogin'])->name('cbt-login');
+Route::post('/cbt-login', [CBTController::class, 'CBTLoginValidate'])->name('post-cbt-login');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/exam', [CBTController::class, 'exam'])->name('exam');
+    Route::get('/prepare-exam', [CBTController::class, 'prepareQuestion']);
+    Route::post('/answer-question', [CBTController::class, 'answerQuestion']);
+});
+
+Route::get('/cbt-result', [CBTController::class, 'result'])->name('cbt-result');

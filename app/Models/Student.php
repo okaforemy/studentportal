@@ -67,4 +67,24 @@ class Student extends Model
     {
         return $this->hasMany(remark::class, 'student_id', 'id');
     }
+
+    /**
+     * Get the holidayAssessment associated with the Student
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function holidayAssessment()
+    {
+        return $this->hasMany(HolidayAssessment::class);
+    }
+
+     /**
+     * Get all of the primaryExam for the Student
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function primaryExam()
+    {
+        return $this->hasMany(PrimaryExam::class);
+    }
 }

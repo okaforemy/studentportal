@@ -7,6 +7,7 @@ use App\Models\Section;
 use App\Models\Subjects;
 use App\models\Student;
 use App\Models\StudentSubjects;
+use Illuminate\Support\Facades\DB;
 use App\Models\Classes;
 use App\Models\Arms;
 
@@ -117,6 +118,19 @@ class SubjectController extends Controller
       
         foreach($students as $key=>$student){
            $student->subjects()->sync($subjects_id);
+        }
+
+        if($request->subjects){
+            $subjects = $request->subjects;
+            $new_arr = [];
+            foreach($subjects as $subject){
+                if(isset($subject['holiday']) && $subject['holiday']== true){
+                    array_push($new_arr,$subject);
+                    break;
+                }
+            }
+           // dd($new_arr);
+           Subjects::upsert($new_arr, ['id'],['holiday']);
         }
 
         if($request->arm){
